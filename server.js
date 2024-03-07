@@ -6,7 +6,8 @@ import path from 'path';
 import { request } from './crawler.js';
 const app = express();
 const PORT = 8080;
-request();
+const articles = await request(0);
+console.log(articles)
 app.listen(PORT, function() {
     console.log(`listening on ${PORT}`);
 });
