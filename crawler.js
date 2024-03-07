@@ -7,7 +7,7 @@ const request = async (presentPage) => {
     const page = await browser.newPage();
     await page.setViewport({
         width: 1366,
-        height: 5000
+        height: 50000
     });
     await page.goto(`https://www.whufc.com/news?category=632&page=${presentPage}`);
 
