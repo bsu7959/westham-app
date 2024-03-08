@@ -2,11 +2,10 @@
 import express from 'express';
 import path from 'path';
 import { request, contentRequest } from './crawler.js';
-import { translater, articlesTranslater } from './translater.js';
 const app = express();
 const PORT = 8080;
-// const articles = await request(0);
-// console.log(articles);
+//const articles = await request(0);
+//console.log(articles);
 // const content = await contentRequest({
 //     title: 'Iron Cast | Lee Bowyer on fulfilling his childhood dream, returning to the Hammers and managing Montserrat',
 //     link: 'https://www.whufc.com/news/iron-cast-lee-bowyer-fulfilling-his-childhood-dream-returning-hammers-and-managing-montserrat',
