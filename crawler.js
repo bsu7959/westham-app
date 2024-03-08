@@ -1,15 +1,15 @@
 
 import puppeteer from 'puppeteer';
 
-// 기사 목록 크롤링 함수
+// 기사 목록 크롤링
 const request = async (presentPage) => {
-    const browser = await puppeteer.launch({ headless: true });
+    const browser = await puppeteer.launch({ headless: false });
     const page = await browser.newPage();
     await page.setViewport({
         width: 1366,
-        height: 5000
+        height: 50000
     });
-    await page.goto(`https://www.whufc.com/news?category=632&page=${presentPage}`);  // 나중에 지울 것
+    await page.goto(`https://www.whufc.com/news?category=632&page=${presentPage}`);
 
     const articles = await page.evaluate(() => {
         const articles = [];
