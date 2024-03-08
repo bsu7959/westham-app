@@ -1,11 +1,11 @@
 import OpenAI from 'openai';
-import apikeys from './key.json';
+import { apiKeys } from './key.js';
 
-const apiKey = apikeys.gptApiKey;
 const apiEndpoint = 'https://api.openai.com';
 
-const client = new OpenAI({ apiKey: apiKey, apiEndpoint });
-console.log(apiKey)
+
+const client = new OpenAI({ apiKey: apiKeys.gptApiKey, apiEndpoint });
+
 const englishArticle = {
     content: [
         'Former West Ham United midfielder Lee Bowyer is the latest guest to share his memories on Iron Cast, the Club’s official podcast!',
@@ -44,6 +44,7 @@ const englishArticle = {
 };
 //console.log(englishArticle.content.length);
 
+// 기사 내용 번역
 const translater = async function (englishArticle) {
     const result = [];
 
@@ -75,6 +76,179 @@ const translater = async function (englishArticle) {
     return result;
 }
 
-export { translater };
+const data = [
+    {
+      title: 'Goals: SC Freiburg 1-0 West Ham United',
+      link: 'https://www.whufc.com/news/goals-sc-freiburg-1-0-west-ham-united',
+      img: 'https://cdn.whufc.com/sites/default/files/2024-03/freiburgagoals.jpg',
+      date: '8 hours ago',
+      content: []
+    },
+    {
+      title: 'Iron Cast | Lee Bowyer on fulfilling his childhood dream, returning to the Hammers and managing Montserrat',
+      link: 'https://www.whufc.com/news/iron-cast-lee-bowyer-fulfilling-his-childhood-dream-returning-hammers-and-managing-montserrat',
+      img: 'https://cdn.whufc.com/sites/default/files/2024-03/bowyerpodcast.jpg',
+      date: '5th March 2024',
+      content: []
+    },
+    {
+      title: "Behind The Scenes | Souček's stunner and Edson nets first Premier League goal in Everton win",
+      link: 'https://www.whufc.com/news/behind-scenes-souceks-stunner-and-edson-nets-first-premier-league-goal-everton-win',
+      img: 'https://cdn.whufc.com/sites/default/files/2024-03/everton_a_bts.jpg',
+      date: '5th March 2024',
+      content: []
+    },
+    {
+      title: 'Extended Highlights: Everton 1-3 West Ham United',
+      link: 'https://www.whufc.com/news/extended-highlights-everton-1-3-west-ham-united',
+      img: 'https://cdn.whufc.com/sites/default/files/2024-03/evertonextended.jpg',
+      date: '3rd March 2024',
+      content: []
+    },
+    {
+      title: 'Goals: Everton 1-3 West Ham United',
+      link: 'https://www.whufc.com/news/goals-everton-1-3-west-ham-united',
+      img: 'https://cdn.whufc.com/sites/default/files/2024-03/everton_a_goals.jpg',
+      date: '2nd March 2024',
+      content: []
+    },
+    {
+      title: "Behind The Scenes | Bowen's hat-trick helps Hammers past Bees",
+      link: 'https://www.whufc.com/news/behind-scenes-bowens-hat-trick-helps-hammers-past-bees',
+      img: 'https://cdn.whufc.com/sites/default/files/2024-02/brentford_bts.jpg',
+      date: '28th February 2024',
+      content: []
+    },
+    {
+      title: 'Iron Cast | David Croft on his West Ham passion, Hammers heroes and Formula One commentary',
+      link: 'https://www.whufc.com/news/iron-cast-david-croft-his-west-ham-passion-hammers-heroes-and-formula-one-commentary',
+      img: 'https://cdn.whufc.com/sites/default/files/2024-02/microsoftteams-image_6.png',
+      date: '27th February 2024',
+      content: []
+    },
+    {
+      title: 'Extended Highlights: West Ham United 4-2 Brentford',
+      link: 'https://www.whufc.com/news/extended-highlights-west-ham-united-4-2-brentford',
+      img: 'https://cdn.whufc.com/sites/default/files/2024-02/brentfordextended.jpg',
+      date: '27th February 2024',
+      content: []
+    },
+    {
+      title: 'Goals: West Ham United 4-2 Brentford',
+      link: 'https://www.whufc.com/news/goals-west-ham-united-4-2-brentford',
+      img: 'https://cdn.whufc.com/sites/default/files/2024-02/brentfordhomegoals.jpg',
+      date: '27th February 2024',
+      content: []
+    },
+    {
+      title: 'Iron Cast | Behzinga on his love for West Ham, remarkable YouTube rise and scoring at London Stadium',
+      link: 'https://www.whufc.com/news/iron-cast-behzinga-his-love-west-ham-remarkable-youtube-rise-and-scoring-london-stadium',
+      img: 'https://cdn.whufc.com/sites/default/files/2024-02/behzinga_ironcast.jpg',
+      date: '20th February 2024',
+      content: []
+    },
+    {
+      title: 'Goals: Nottingham Forest 2-0 West Ham United',
+      link: 'https://www.whufc.com/news/goals-nottingham-forest-2-0-west-ham-united',
+      img: 'https://cdn.whufc.com/sites/default/files/2024-02/forest_a_goals.jpg',
+      date: '17th February 2024',
+      content: []
+    },
+    {
+      title: 'Iron Cast | Frédéric Kanouté on his dream debut, tantalising West Ham talent and relegation heartbreak',
+      link: 'https://www.whufc.com/news/iron-cast-frederic-kanoute-his-dream-debut-tantalising-west-ham-talent-and-relegation',
+      img: 'https://cdn.whufc.com/sites/default/files/2024-02/microsoftteams-image_21.png',
+      date: '13th February 2024',
+      content: []
+    },
+    {
+      title: 'Highlights: West Ham United 0-6 Arsenal',
+      link: 'https://www.whufc.com/news/highlights-west-ham-united-0-6-arsenal',
+      img: 'https://cdn.whufc.com/sites/default/files/2024-02/arsenal_h_highlights.jpg',
+      date: '11th February 2024',
+      content: []
+    },
+    {
+      title: 'Iron Cast | Thomas Hitzlsperger on career ups and downs, feeling at home with the Hammers and relegation regrets',
+      link: 'https://www.whufc.com/news/iron-cast-thomas-hitzlsperger-career-ups-and-downs-feeling-home-hammers-and-relegation-regrets',
+      img: 'https://cdn.whufc.com/sites/default/files/2024-02/microsoftteams-image_20.png',
+      date: '6th February 2024',
+      content: []
+    },
+    {
+      title: 'Extended Highlights: Manchester United 3-0 West Ham United',
+      link: 'https://www.whufc.com/news/extended-highlights-manchester-united-3-0-west-ham-united',
+      img: 'https://cdn.whufc.com/sites/default/files/2024-02/manutd_a_highlights.jpg',
+      date: '5th February 2024',
+      content: []
+    },
+    {
+      title: 'Goals: Manchester United 3-0 West Ham United',
+      link: 'https://www.whufc.com/news/goals-manchester-united-3-0-west-ham-united',
+      img: 'https://cdn.whufc.com/sites/default/files/2024-02/manutd_a_goals.jpg',
+      date: '4th February 2024',
+      content: []
+    },
+    {
+      title: 'Vote for your January Goal of the Month',
+      link: 'https://www.whufc.com/news/vote-your-january-goal-month',
+      img: 'https://cdn.whufc.com/sites/default/files/2024-02/jangotm.jpg',
+      date: '3rd February 2024',
+      content: []
+    },
+    {
+      title: 'Extended Highlights: West Ham United 1-1 AFC Bournemouth',
+      link: 'https://www.whufc.com/news/extended-highlights-west-ham-united-1-1-afc-bournemouth',
+      img: 'https://cdn.whufc.com/sites/default/files/2024-02/afcb_home_highlights.jpg',
+      date: '2nd February 2024',
+      content: []
+    },
+    {
+      title: 'Goals: West Ham United 1-1 AFC Bournemouth',
+      link: 'https://www.whufc.com/news/goals-west-ham-united-1-1-afc-bournemouth',
+      img: 'https://cdn.whufc.com/sites/default/files/2024-02/bournemouthgoals.jpg',
+      date: '1st February 2024',
+      content: []
+    },
+    {
+      title: 'Moyes: We couldn’t come up with the right formula',
+      link: 'https://www.whufc.com/news/moyes-we-couldnt-come-right-formula',
+      img: 'https://cdn.whufc.com/sites/default/files/2024-02/dm_post_bournemouth.jpg',
+      date: '1st February 2024',
+      content: []
+    }
+  ]
 
+// 기사 목록 번역
+const articlesTranslater = async function(req) {
+    const articles = [];
+    const result = [];
+    req.forEach(el => {
+        articles.push({
+            title: el.title,
+            date: el.date,
+        })
+    });
 
+    const params = {
+        model: 'gpt-3.5-turbo',
+        messages: [{'role':'user', 'content':`Translate the following English text to Korean:\n\n${JSON.stringify(articles)}`,}],
+        temperature:0.7,
+    }
+    console.log(params)
+
+    await client.chat.completions.create(params)
+    .then(response => {
+        result.push(response.choices[0].message.content)
+        console.log(response.choices[0]);
+    })
+
+    .catch(error => {
+        console.log(error);
+    })
+    return result;
+}
+
+//const res = await articlesTranslater(data);
+
+export { translater, articlesTranslater };
