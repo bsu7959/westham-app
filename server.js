@@ -1,9 +1,12 @@
 
-import express from 'express';
-import path from 'path';
-import { request, contentRequest } from './crawler.js';
-import { translater, articlesTranslater } from './translater.js';
+
+const express = require('express');
+const path = require('path');
+const crawler = require('./crawler.js');
+const translater = require('./translater.js');
 const app = express();
+const cors = require('cors');
+const bodyParser = require('body-parser');
 const PORT = 8080;
 // const articles = await request(0);
 // console.log(articles);
@@ -16,22 +19,26 @@ const PORT = 8080;
 // })
 // console.log(content);
 
+
+app.use(cors());
+app.use(bodyParser.json());
+app.use(express.static('./build'));
+app.use(express.static('./build/static'));
+
 app.listen(PORT, function() {
     console.log(`listening on ${PORT}`);
 });
 
-app.use(express.static('./build'));
-app.use(express.static('./build/static'));
-
 // 기사목록 불러오기
-app.get('/articles', async function(req,res) {
-    const articles = await request(req);
+app.get('/articlesRequest', async function(req,res) {
+    //console.log(req.query.presentPage)
+    const articles = await crawler.articlesRequest(req.query.presentPage);
     res.send(articles);
 })
 
 // 기사 내용 불러오기
 app.get('/content', async function(req,res) {
-    const content = await contentRequest(req);
+    const content = await crawler.contentRequest(req);
     res.send(content);
 })
 

@@ -1,9 +1,12 @@
 
-import puppeteer from 'puppeteer';
+//import puppeteer from 'puppeteer';
+const puppeteer = require('puppeteer');
 
 // 기사 목록 크롤링
-const request = async (presentPage) => {
-    const browser = await puppeteer.launch({ headless: false });
+exports.articlesRequest = async (presentPage) => {
+    console.log('crawler.js')
+    console.log(presentPage)
+    const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
     await page.setViewport({
         width: 1366,
@@ -27,7 +30,7 @@ const request = async (presentPage) => {
     return articles;
 }
 
-const contentRequest = async (article) => {
+exports.contentRequest = async (article) => {
     const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
     await page.setViewport({
@@ -82,4 +85,4 @@ const contentRequest = async (article) => {
     };
 }
 
-export { request, contentRequest };
+// export { request, contentRequest };
