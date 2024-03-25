@@ -9,30 +9,25 @@ export default function Home() {
     console.log("home")
     const [, updateState] = useState();
     const forceUpdate = useCallback(() => updateState({}), []);
-    const [presentPage, setPresentPage] = useState(1);
+    const [presentPage, setPresentPage] = useState(80);
     const [articles, setArticles] = useState([]);
+    const [pagination, setPagination] = useState([]);
     
     useEffect(() => {
         articlesRequest(presentPage).then((data) => {
-            setArticles(data);
+            console.log(data)
+            setArticles(data[0]);
+            setPagination(data[1])
             //forceUpdate();
         })
     },[])
-    useEffect(() => {
-
-    },[articles])
-    console.log(articles)
-    // const article = await articlesRequest(presentPage);
-    // setArticles(article);
-
-    // console.log(articles)
     
     
     return <>
         <Header/>
         <h1>Home</h1>
         <ArticleList articles={articles}/>
-        <Pagination/>
+        <Pagination pagination={pagination}/>
         
     </>
 }

@@ -29,11 +29,11 @@ app.listen(PORT, function() {
     console.log(`listening on ${PORT}`);
 });
 
-// 기사목록 불러오기
+// 기사목록, pagination 불러오기
 app.get('/articlesRequest', async function(req,res) {
     //console.log(req.query.presentPage)
-    const articles = await crawler.articlesRequest(req.query.presentPage);
-    res.send(articles);
+    const resData = await crawler.articlesRequest(req.query.presentPage);
+    res.send(resData);
 })
 
 // 기사 내용 불러오기

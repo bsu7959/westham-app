@@ -14,8 +14,16 @@ exports.articlesRequest = async (presentPage) => {
     });
     await page.goto(`https://www.whufc.com/news?category=632&page=${presentPage}`);
 
+    // 기사목록
     const articles = await page.evaluate(() => {
         const articles = [];
+        // const pagination = [];
+
+        // document.querySelectorAll('m-pagination__items').forEach((li) => {
+        //     console.log("dd")
+        //     pagination.push(li.textContent.trim());
+        // })
+        // console.log(pagination)
         document.querySelectorAll('.o-news-grid__item article').forEach((a) => {
             articles.push({
                 title: a.firstElementChild.textContent.trim(),
@@ -27,7 +35,25 @@ exports.articlesRequest = async (presentPage) => {
         });
         return articles;
     });
-    return articles;
+
+    // 하단 pagination 정보
+    const pagination = await page.evaluate(() => {
+        const pagination = [];
+        document.querySelectorAll('.m-pagination__items li a').forEach((a) => {
+            //pagination.push(a.textContent.trim());
+            if(a.querySelector('span').textContent == 'Next page') {
+                pagination.push(0)
+            }else if(a.querySelector('span').textContent == 'Previous page') {
+                pagination.push(-1)
+            }else {
+                pagination.push(a.firstElementChild.nextSibling.textContent)
+            }
+        })
+        return pagination;
+    })
+    //console.log(pagination)
+    
+    return [articles, pagination];
 }
 
 exports.contentRequest = async (article) => {
