@@ -21,6 +21,7 @@ const PORT = 8080;
 
 
 app.use(cors());
+//app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 app.use(bodyParser.json());
 app.use(express.static('./build'));
 app.use(express.static('./build/static'));
@@ -38,7 +39,8 @@ app.get('/articlesRequest', async function(req,res) {
 
 // 기사 내용 불러오기
 app.get('/content', async function(req,res) {
-    const content = await crawler.contentRequest(req);
+    console.log(req.query.url)
+    const content = await crawler.contentRequest(req.query.url);
     res.send(content);
 })
 

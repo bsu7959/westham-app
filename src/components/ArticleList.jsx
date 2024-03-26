@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react'
+import { Link } from "react-router-dom";
 
 export default function ArticleList(props) {
     
@@ -10,12 +11,12 @@ export default function ArticleList(props) {
                 arr.push(<div>
                     {
                         props.articles.map(function(item) {
-                            return <div>
+                            return <Link to={'/article'} state={item}>
                                 제목: {item.title}
                                 사진: {item.img}
                                 주소: {item.link}
                                 날짜: {item.date}
-                            </div>
+                            </Link>
                         })
                     }
                 </div>)

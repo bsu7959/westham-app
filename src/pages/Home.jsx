@@ -8,7 +8,6 @@ export default function Home() {
 
     console.log("home")
     const [, updateState] = useState();
-    const forceUpdate = useCallback(() => updateState({}), []);
     const [presentPage, setPresentPage] = useState(80);
     const [articles, setArticles] = useState([]);
     const [pagination, setPagination] = useState([]);

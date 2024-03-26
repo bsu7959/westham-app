@@ -56,14 +56,14 @@ exports.articlesRequest = async (presentPage) => {
     return [articles, pagination];
 }
 
-exports.contentRequest = async (article) => {
+exports.contentRequest = async (url) => {
     const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
     await page.setViewport({
         width: 1900,
         height: 5000
     });
-    await page.goto(article.link);  // 나중에 지울 것
+    await page.goto(url);  // 나중에 지울 것
 
     const content = await page.evaluate(() => {
         const content = [];
@@ -103,10 +103,6 @@ exports.contentRequest = async (article) => {
         return content;
     });
     return {
-        title: article.title,
-        link: article.link,
-        img: article.img,
-        date: article.date,
         content: content,
     };
 }
