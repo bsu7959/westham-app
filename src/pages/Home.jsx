@@ -3,6 +3,35 @@ import Header from '../components/Header';
 import Pagination from '../components/Pagination';
 import ArticleList from '../components/ArticleList';
 import { articlesRequest } from '../api';
+import styled from '@emotion/styled';
+
+const TitleDiv = styled.div`
+
+`;
+
+const SubTitle = styled.p`
+    clear: both;
+    font-size: 13px;    
+    display: flex;
+    align-items: center;
+    margin: 0;
+
+    &::before {
+        background-image: url('./assets/simple-logo.svg');
+        background-repeat: no-repeat;
+        content: "";
+        width: 22px;
+        height: 22px;
+        display: inline-block;
+        padding-right: 10px;
+    }
+`;
+
+const Title = styled.p`
+    font-size: 50px;
+    margin: 0;
+    line-height: 50px;
+`;
 
 export default function Home() {
 
@@ -24,7 +53,10 @@ export default function Home() {
     
     return <>
         <Header/>
-        <h1>Home</h1>
+        <TitleDiv>
+            <SubTitle>NEWS</SubTitle>
+            <Title>Latest</Title>
+        </TitleDiv>
         <ArticleList articles={articles}/>
         <Pagination pagination={pagination}/>
         

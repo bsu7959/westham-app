@@ -52,11 +52,15 @@ exports.articlesRequest = async (presentPage) => {
         return pagination;
     })
     //console.log(pagination)
-    
+    await page.close();
+    await browser.close();
     return [articles, pagination];
+
 }
 
+
 exports.contentRequest = async (url) => {
+    console.log(url)
     const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
     await page.setViewport({
@@ -102,6 +106,8 @@ exports.contentRequest = async (url) => {
 
         return content;
     });
+    await page.close();
+    await browser.close();
     return {
         content: content,
     };

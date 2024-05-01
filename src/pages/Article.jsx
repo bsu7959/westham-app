@@ -11,14 +11,7 @@ export default function Article() {
   const [presentArticle, setPresentArticle] = useState();
   const [, updateState] = useState();
   let isData = false;
-  //console.log(presentArticle)
-
-
-//   useEffect(() => {
-//     setPresentArticle(location.state);
-//     console.log(presentArticle);
-
-// },[location.state])
+  console.log(location.state)
 
   useEffect(() => {
     articleContentRequest(location.state).then((data) => {
