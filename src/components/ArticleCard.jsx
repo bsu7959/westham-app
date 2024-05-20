@@ -1,42 +1,47 @@
+
+
 import React from 'react'
 import { Link } from "react-router-dom";
-import styled, { keyframes } from '@emotion/styled';
+import styled from '@emotion/styled/macro';
 
-const Container = styled.div`
-display: flex;
-flex-wrap: wrap;
-flex-basis: auto;
-padding-right: 80px;
-`;
+
 
 const StyledLink = styled(Link)`
-width: 21%;
-padding: 0 1.65% 0 1.65%;
-margin-top: 30px;
-margin-bottom: 50px;
-display: flex;
-flex-direction: column;
-
-@media screen and ( max-width: 1454px ) {
-    width: 30%;
-}
-@media screen and ( max-width: 767px ) {
-    width: 100%;
+    width: 21%;
+    padding: 0 1.65% 0 1.65%;
+    margin-top: 30px;
+    margin-bottom: 50px;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    padding: 0 0 0 1.65%;
-}
-`
+    flex-direction: column;
 
+    @media screen and ( max-width: 1454px ) {
+        width: 30%;
+    }
+    @media screen and ( max-width: 767px ) {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        padding: 0 0 0 1.65%;
+    }
+    
+    
+`
 
 const ArticleImageContainer = styled.div`
     position: relative;
     width: 100%;
     overflow: hidden;
+    height: 17vw;
+    border-radius: 8px;
+
+    @media screen and ( min-width: 1454px ) {
+        height: 13vw;
+    }
 
     @media screen and ( max-width: 767px ) {
+        height: 200px;
         width: 50%;
         flex-grow: 0;
     }
@@ -47,10 +52,29 @@ const ArticleImage = styled.img`
     height: 17vw;
     vertical-align: middle;
     object-fit: cover;
-    border-radius: 5%;
+    transition: 0.3s ease-in-out;
+
+    ${StyledLink}:hover &{
+        transform: scale(1.2);
+    }
+
+    @media screen and ( min-width: 1454px ) {
+        height: 13vw;
+        ${StyledLink}:hover &{
+
+            transform: scale(1.2);
+        }
+    }
+
     @media screen and ( max-width: 767px ) {
         height: 200px;
+        ${StyledLink}:hover &{
+            height: 200px;
+            transform: scale(1.2);
+        }
     }
+
+
 
 `;
 
@@ -62,8 +86,12 @@ const ArticleTitleContainer = styled.div`
     @media screen and ( max-width: 767px ) {
         width: 40%;
     }
-`;
-
+    box-shadow: 0 0 15px #ffffff;
+    transition: 0.3s ease;
+    ${StyledLink}:hover &{
+        box-shadow: 0 0 15px #bbbbbb;
+    }
+`
 
 const ArticleTitle = styled.p`
     text-align: center;
@@ -123,21 +151,21 @@ const HrIcon = styled.div`
 
 export default function ArticleCard(props) {
     console.log(props)
-  return (
-    <StyledLink to={'/article'} state={props.item}>
-                                <ArticleImageContainer>
-                                    <ArticleImage src={props.item.img}/>
-                                </ArticleImageContainer>
-                                <ArticleTitleContainer>
-                                    <ArticleTitle>{props.item.title}</ArticleTitle>
-                                    <ArticleInfo>
-                                        <HrDiv>
-                                            <HrIcon/>
-                                        </HrDiv>
-                                        <ArticleDate>{props.item.date}</ArticleDate>
-                                    </ArticleInfo>
-                                </ArticleTitleContainer>
+    return (
+        <StyledLink to={'/article'} state={props.item}>
+            <ArticleImageContainer>
+                <ArticleImage src={props.item.img} />
+            </ArticleImageContainer>
+            <ArticleTitleContainer>
+                <ArticleTitle>{props.item.title}</ArticleTitle>
+                <ArticleInfo>
+                    <HrDiv>
+                        <HrIcon />
+                    </HrDiv>
+                    <ArticleDate>{props.item.date}</ArticleDate>
+                </ArticleInfo>
+            </ArticleTitleContainer>
 
-                            </StyledLink>
-  )
+        </StyledLink>
+    )
 }

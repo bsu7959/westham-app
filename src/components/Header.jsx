@@ -24,6 +24,7 @@ const Container = styled.div`
   border-width: 0px;
   border-bottom-width: 1px;
   border-color: #dfdfdfcc;
+  
 `;
 
 const Ul = styled.ul`
